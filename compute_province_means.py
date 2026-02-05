@@ -113,13 +113,13 @@ def compute_averages(model, filetype, variable, depth, provinces, baseDir):
 # ===== RUN =====
 
 models = ['TOM12_TJ_LC51', 'TOM12_TJ_LA50', 'TOM12_TJ_LAH3']
-
+models = ['TOM12_RW_OBi1']
 # Define variables to extract
 ptrc_vars = [
     ('Fer', 0),
     ('Si', 0),
-    ('NO3', 0),
-    ('PO4', 0)
+#    ('NO3', 0),
+#    ('PO4', 0)
 ]
 
 diad_vars = [

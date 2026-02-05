@@ -87,13 +87,14 @@ def compute_climatology(model, filetype, yrst, yrend, runs_dir, clims_dir):
 # Define models to process
 models = ['TOM12_RW_OBi1', 'TOM12_TJ_R4A1', 'TOM12_TJ_LA50', 
           'TOM12_RY_ERA3', 'TOM12_TJ_LAH3', 'TOM12_TJ_LC51']
+models = ['TOM12_TJ_OBA1', 'TOM12_TJ_OBC1', 'TOM12_TJ_OBH1']
 
 # Define file types to process
 filetypes = ['ptrc_T', 'diad_T']
 
 # Define year range
-yrst = 2010
-yrend = 2019
+yrst = 1925
+yrend = 1934
 
 # Loop over models and file types
 for model in models:
