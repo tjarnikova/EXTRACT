@@ -5,7 +5,7 @@ from pathlib import Path
 # ===== INPUTS =====
 
 # Paths
-clims_dir = '/gpfs/data/greenocean/software/users/mep22dku/clims/'
+clims_dir = '/gpfs/data/greenocean/users/mep22dku/clims/'
 
 # Load mask
 mask = xr.open_dataset('/gpfs/home/mep22dku/scratch/SOZONE/UTILS/mesh_mask3pt6_nicedims.nc')
