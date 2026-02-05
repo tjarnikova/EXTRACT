@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-BASEDIR=/gpfs/data/greenocean/software/runs/clims/
+BASEDIR=/gpfs/data/greenocean/users/mep22dku/clims/
 
 # Define runs to process
 runs=("TOM12_RW_OBi1" "TOM12_TJ_R4A1" "TOM12_TJ_LA50" "TOM12_TJ_LAH3" "TOM12_RY_ERA3" "TOM12_TJ_LC51")
