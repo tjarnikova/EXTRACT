@@ -2,6 +2,8 @@ import numpy as np
 import xarray as xr
 import glob
 from pathlib import Path
+import pandas as pd
+
 
 # ===== INPUTS =====
 model = 'TOM12_TJ_LA50'
@@ -102,6 +104,11 @@ def compute_averages(model, filetype, variable, depth, provinces, baseDir):
     # Concatenate and save
     if all_results:
         combined = xr.concat(all_results, dim='time_counter')
+        
+        # Convert cftime to pandas datetime
+        time_pd = pd.to_datetime([pd.Timestamp(t.isoformat()) for t in combined.time_counter.values])
+        combined = combined.assign_coords(time_counter=time_pd)
+        
         combined.attrs['made_in'] = '/gpfs/home/mep22dku/scratch/EXTRACT/compute_province_means.py'
         output_file = output_dir / f"{model}_{filetype}_{variable}_d{depth}_provinces.nc"
         combined.to_netcdf(output_file)
@@ -154,4 +161,3 @@ for model in models:
 print(f"\n{'='*60}")
 print("All processing complete!")
 print(f"{'='*60}")
-
