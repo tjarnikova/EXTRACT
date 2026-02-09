@@ -28,7 +28,7 @@ def get_limiter(run='TOM12_TJ_LC00', year=1920, dataset_note=None):
         Dataset containing LV and LN variables for each PFT
     """
     tdir = f'/gpfs/data/greenocean/software/runs/{run}/'
-    tfi = f'ORCA2_1m_{year}0101_{year}1231_diad_T.nc'
+    tfi = f'ORCA2_1m_{year}0101_{year}1231_limphy.nc'
     w = xr.open_dataset(f'{tdir}/{tfi}')
     print(f'{run} {year}')
     
