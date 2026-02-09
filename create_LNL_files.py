@@ -152,29 +152,44 @@ def process_year(model, year, pfts, depth_levels, base_dir, tmesh):
         limphy_ds = xr.open_dataset(limphy_file)
         
         # Build variable lists
-        ln_vars = [f'LN_{pft}' for pft in pfts]
-        light_vars = [f'lim8light_{pft.lower()}' for pft in pfts]
+        lv_vars = [f'LV_{pft}' for pft in pfts]  # Nutrient limitation (LV not LN)
+        light_vars = [f'lim8light_{pft.lower()}' for pft in pfts]  # Light limitation
         
         # Create combined output dataset
         output_ds = xr.Dataset()
         
         # Process each depth level
         for depth in depth_levels:
-            # Average LN variables from LoP file
-            ln_averaged = average_top_meters(lop_ds, ln_vars, depth, tmesh)
+            # Average LV variables from LoP file (nutrient limitation)
+            lv_averaged = average_top_meters(lop_ds, lv_vars, depth, tmesh)
             
             # Average light limitation variables from limphy file
             light_averaged = average_top_meters(limphy_ds, light_vars, depth, tmesh)
             
+            # Rename variables to LIGHT_* and NUT_* format
+            for pft in pfts:
+                # Rename light limitation: lim8light_dia_avg_10m -> LIGHT_DIA_10m
+                old_light_name = f'lim8light_{pft.lower()}_avg_{depth}m'
+                new_light_name = f'LIGHT_{pft}_{depth}m'
+                if old_light_name in light_averaged:
+                    light_averaged = light_averaged.rename({old_light_name: new_light_name})
+                
+                # Rename nutrient limitation: LV_DIA_avg_10m -> NUT_DIA_10m
+                old_lv_name = f'LV_{pft}_avg_{depth}m'
+                new_lv_name = f'NUT_{pft}_{depth}m'
+                if old_lv_name in lv_averaged:
+                    lv_averaged = lv_averaged.rename({old_lv_name: new_lv_name})
+            
             # Merge into output dataset
-            output_ds = xr.merge([output_ds, ln_averaged, light_averaged])
+            output_ds = xr.merge([output_ds, lv_averaged, light_averaged])
         
         # Add metadata
         output_ds.attrs['made_in'] = '/gpfs/home/mep22dku/scratch/EXTRACT/create_LNL_files.py'
         output_ds.attrs['source_files'] = f'{lop_file.name}, {limphy_file.name}'
         output_ds.attrs['source_model'] = model
         output_ds.attrs['year'] = year
-        output_ds.attrs['description'] = 'Top 10m and 100m averages of limiting nutrient (LN) and light limitation variables'
+        output_ds.attrs['description'] = 'Top 10m and 100m averages of nutrient limitation (LV->NUT) and light limitation (LIGHT) variables'
+        output_ds.attrs['variable_naming'] = 'NUT_* = nutrient limitation (from LV), LIGHT_* = light limitation (from lim8light)'
         
         # Save output
         output_ds.to_netcdf(output_file)
