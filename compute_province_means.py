@@ -125,8 +125,10 @@ models = ['TOM12_RW_OBi1']
 ptrc_vars = [
     ('Fer', 0),
     ('Si', 0),
-#    ('NO3', 0),
-#    ('PO4', 0)
+   ('NO3', 0),
+   ('PO4', 0),
+   ('DIC', 0),
+   ('Alkalini', 0)
 ]
 
 diad_vars = [
