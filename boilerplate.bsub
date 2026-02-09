@@ -10,9 +10,12 @@
 
 module purge
 module load python/anaconda/2023.07/3.11.4
+module load cdo/2.5.0
 source activate swamp2
 
 #run me from the login node otehrwise i get confused
 #python dateReformatUKESM.py
 python get_clim.py
-#python compute_province_means.py
+python depth_integrate.py
+bash regrid_clim.py
+python compute_province_means.py
