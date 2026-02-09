@@ -5,7 +5,9 @@ import os
 from pathlib import Path
 
 # ===== INPUTS =====
-
+# Define year range
+yrst = 2010
+yrend = 2019
 # Paths
 runs_dir = '/gpfs/data/greenocean/software/runs/'
 clims_dir = '/gpfs/data/greenocean/users/mep22dku/clims/'
@@ -123,10 +125,6 @@ if not models:
 
 # Define file types to process
 filetypes = ['ptrc_T', 'diad_T']
-
-# Define year range
-yrst = 1925
-yrend = 1934
 
 # Loop over models and file types
 for model in models:
