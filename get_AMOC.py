@@ -135,7 +135,7 @@ if not models:
 
 # Define year range
 yrst = 1940
-yrend = 2020
+yrend = 2024
 
 # Loop over models
 for model in models:
