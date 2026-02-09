@@ -4,7 +4,7 @@ from pathlib import Path
 # ===== INPUTS =====
 
 # Paths
-bdir = '/gpfs/data/greenocean/software/runs/clims/'
+bdir = '/gpfs/data/greenocean/users/mep22dku/clims/'
 models_file = 'models.txt'  # Path to text file containing model names
 
 # Load masks and setup
