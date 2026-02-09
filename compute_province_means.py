@@ -6,6 +6,7 @@ import pandas as pd
 
 
 # ===== INPUTS =====
+models_file = 'models.txt'  # Path to text file containing model names
 model = 'TOM12_TJ_LA50'
 filetype = 'ptrc'  # or 'diad'
 variable = 'NO3'   # or 'PO4', 'Fer', 'Si', 'PPINT', 'Cflx', 'EXP', etc.
@@ -117,10 +118,45 @@ def compute_averages(model, filetype, variable, depth, provinces, baseDir):
     
     return None
 
+
+def read_models_from_file(filepath):
+    """
+    Read model names from a text file (one per line).
+    
+    Parameters
+    ----------
+    filepath : str or Path
+        Path to text file containing model names
+        
+    Returns
+    -------
+    list of str
+        List of model names
+    """
+    models = []
+    try:
+        with open(filepath, 'r') as f:
+            for line in f:
+                line = line.strip()
+                # Skip empty lines and comments
+                if line and not line.startswith('#'):
+                    models.append(line)
+        print(f"Loaded {len(models)} models from {filepath}")
+        return models
+    except FileNotFoundError:
+        print(f"ERROR: Models file not found: {filepath}")
+        return []
+
+
 # ===== RUN =====
 
-models = ['TOM12_TJ_LC51', 'TOM12_TJ_LA50', 'TOM12_TJ_LAH3']
-models = ['TOM12_RW_OBi1']
+# Read models from file
+models = read_models_from_file(models_file)
+
+if not models:
+    print("No models to process. Exiting.")
+    exit(1)
+
 # Define variables to extract
 ptrc_vars = [
     ('Fer', 0),

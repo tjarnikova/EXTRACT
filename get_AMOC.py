@@ -9,6 +9,7 @@ from pathlib import Path
 # Paths
 baseDir = '/gpfs/data/greenocean/software/resources/CDFTOOLS/MOCresults/'
 clims_dir = '/gpfs/data/greenocean/users/mep22dku/clims/'
+models_file = 'models.txt'  # Path to text file containing model names
 
 # ===== FUNCTION =====
 def compute_amoc_timeseries(model, yrst, yrend, baseDir, clims_dir):
@@ -94,10 +95,43 @@ def compute_amoc_timeseries(model, yrst, yrend, baseDir, clims_dir):
         return None
 
 
+def read_models_from_file(filepath):
+    """
+    Read model names from a text file (one per line).
+    
+    Parameters
+    ----------
+    filepath : str or Path
+        Path to text file containing model names
+        
+    Returns
+    -------
+    list of str
+        List of model names
+    """
+    models = []
+    try:
+        with open(filepath, 'r') as f:
+            for line in f:
+                line = line.strip()
+                # Skip empty lines and comments
+                if line and not line.startswith('#'):
+                    models.append(line)
+        print(f"Loaded {len(models)} models from {filepath}")
+        return models
+    except FileNotFoundError:
+        print(f"ERROR: Models file not found: {filepath}")
+        return []
+
+
 # ===== RUN =====
 
-# Define models to process
-models = ['TOM12_TJ_LA50', 'TOM12_TJ_LC51', 'TOM12_TJ_LAH3']
+# Read models from file
+models = read_models_from_file(models_file)
+
+if not models:
+    print("No models to process. Exiting.")
+    exit(1)
 
 # Define year range
 yrst = 1940

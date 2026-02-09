@@ -2,10 +2,32 @@
 
 # Configuration
 BASEDIR=/gpfs/data/greenocean/users/mep22dku/clims/
+MODELS_FILE="models.txt"  # Path to text file containing model names
 
-# Define runs to process
-runs=("TOM12_RW_OBi1" "TOM12_TJ_R4A1" "TOM12_TJ_LA50" "TOM12_TJ_LAH3" "TOM12_RY_ERA3" "TOM12_TJ_LC51")
-runs=("TOM12_TJ_OBA1" "TOM12_TJ_OBC1" "TOM12_TJ_OBH1")
+# Check if models file exists
+if [ ! -f "$MODELS_FILE" ]; then
+    echo "ERROR: Models file not found: $MODELS_FILE"
+    exit 1
+fi
+
+# Read models from file into an array
+runs=()
+while IFS= read -r line; do
+    # Remove leading/trailing whitespace
+    line=$(echo "$line" | xargs)
+    # Skip empty lines and comments (lines starting with #)
+    if [ -n "$line" ] && [[ ! "$line" =~ ^# ]]; then
+        runs+=("$line")
+    fi
+done < "$MODELS_FILE"
+
+# Check if any models were loaded
+if [ ${#runs[@]} -eq 0 ]; then
+    echo "ERROR: No models found in $MODELS_FILE"
+    exit 1
+fi
+
+echo "Loaded ${#runs[@]} models from $MODELS_FILE"
 
 # Process each run
 for run in "${runs[@]}"; do

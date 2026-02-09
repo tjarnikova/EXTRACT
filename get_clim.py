@@ -9,6 +9,7 @@ from pathlib import Path
 # Paths
 runs_dir = '/gpfs/data/greenocean/software/runs/'
 clims_dir = '/gpfs/data/greenocean/users/mep22dku/clims/'
+models_file = 'models.txt'  # Path to text file containing model names
 
 # ===== FUNCTION =====
 def compute_climatology(model, filetype, yrst, yrend, runs_dir, clims_dir):
@@ -82,12 +83,43 @@ def compute_climatology(model, filetype, yrst, yrend, runs_dir, clims_dir):
         return None
 
 
+def read_models_from_file(filepath):
+    """
+    Read model names from a text file (one per line).
+    
+    Parameters
+    ----------
+    filepath : str or Path
+        Path to text file containing model names
+        
+    Returns
+    -------
+    list of str
+        List of model names
+    """
+    models = []
+    try:
+        with open(filepath, 'r') as f:
+            for line in f:
+                line = line.strip()
+                # Skip empty lines and comments
+                if line and not line.startswith('#'):
+                    models.append(line)
+        print(f"Loaded {len(models)} models from {filepath}")
+        return models
+    except FileNotFoundError:
+        print(f"ERROR: Models file not found: {filepath}")
+        return []
+
+
 # ===== RUN =====
 
-# Define models to process
-models = ['TOM12_RW_OBi1', 'TOM12_TJ_R4A1', 'TOM12_TJ_LA50', 
-          'TOM12_RY_ERA3', 'TOM12_TJ_LAH3', 'TOM12_TJ_LC51']
-models = ['TOM12_TJ_OBA1', 'TOM12_TJ_OBC1', 'TOM12_TJ_OBH1']
+# Read models from file
+models = read_models_from_file(models_file)
+
+if not models:
+    print("No models to process. Exiting.")
+    exit(1)
 
 # Define file types to process
 filetypes = ['ptrc_T', 'diad_T']
