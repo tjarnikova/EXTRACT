@@ -63,7 +63,7 @@ def integrate_depth(dataset, var_list, tmesh, suffix='_int'):
         raise ValueError(f"Could not find depth dimension in variables: {var_list}")
     
     # Get cell thickness (e3t) and rename dimensions to match dataset
-    e3t = tmesh['e3t_0'].copy()
+    e3t = tmesh['e3t_0'].copy() * tmesh['tmask'].values
     
     # Rename tmesh dimensions to match dataset dimensions
     dim_mapping = {}
