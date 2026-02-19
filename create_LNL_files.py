@@ -8,8 +8,8 @@ models_file = 'models.txt'  # Path to text file containing model names
 base_dir = '/gpfs/data/greenocean/software/runs/'
 
 # Year range
-year_start = 1953
-year_end = 2023
+year_start = 2010
+year_end = 2020
 
 # PFTs
 pfts = ['DIA', 'MIX', 'COC', 'PIC', 'PHA', 'FIX']

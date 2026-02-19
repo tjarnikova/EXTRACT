@@ -13,7 +13,7 @@ mask = xr.open_dataset('/gpfs/home/mep22dku/scratch/SOZONE/UTILS/mesh_mask3pt6_n
 
 # Variable lists for different file types
 diad_vars = ['PPT', 'PPT_DIA', 'PPT_MIX', 'PPT_COC', 'PPT_PIC', 'PPT_PHA', 'PPT_FIX']
-ptrc_vars = ['BAC', 'PRO', 'PTE', 'MES', 'GEL', 'MAC', 'DIA', 'MIX', 'COC', 'PIC', 'PHA', 'FIX']
+ptrc_vars = ['BAC', 'PRO', 'PTE', 'MES', 'GEL', 'MAC', 'DIA', 'MIX', 'COC', 'PIC', 'PHA', 'FIX', 'CRU']
 
 # ===== FUNCTION =====
 def integrate_depth(dataset, var_list, tmesh, suffix='_int'):

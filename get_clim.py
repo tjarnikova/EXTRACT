@@ -125,6 +125,8 @@ if not models:
 
 # Define file types to process
 filetypes = ['ptrc_T', 'diad_T']
+filetypes = ['LNL_T']
+filetypes = ['grid_T']
 
 # Loop over models and file types
 for model in models:
