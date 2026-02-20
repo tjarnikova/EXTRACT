@@ -16,7 +16,9 @@ source activate swamp2
 #run me from the login node otehrwise i get confused
 #python dateReformatUKESM.py
 #python get_clim.py
-python depth_integrate.py
-bash regrid_clim.sh
+python get_clim.py
+python get_AMOC.py
+#python depth_integrate.py
+#bash regrid_clim.sh
 #python compute_province_means.py
 #python extract-LoP.py
