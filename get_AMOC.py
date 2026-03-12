@@ -134,7 +134,7 @@ if not models:
     exit(1)
 
 # Define year range
-yrst = 1940
+yrst = 1920
 yrend = 2024
 
 # Loop over models

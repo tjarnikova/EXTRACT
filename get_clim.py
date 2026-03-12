@@ -13,6 +13,11 @@ runs_dir = '/gpfs/data/greenocean/software/runs/'
 clims_dir = '/gpfs/data/greenocean/users/mep22dku/clims/'
 models_file = 'models.txt'  # Path to text file containing model names
 
+#filetype to process
+filetypes = ['ptrc_T', 'diad_T']
+filetypes = ['LNL_T']
+filetypes = ['grid_T']
+
 # ===== FUNCTION =====
 def compute_climatology(model, filetype, yrst, yrend, runs_dir, clims_dir):
     """
@@ -123,10 +128,6 @@ if not models:
     print("No models to process. Exiting.")
     exit(1)
 
-# Define file types to process
-filetypes = ['ptrc_T', 'diad_T']
-filetypes = ['LNL_T']
-filetypes = ['grid_T']
 
 # Loop over models and file types
 for model in models:
