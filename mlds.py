@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import os
 
-# ── masks ─────────────────────────────────────────────────────────────────────
 mask = xr.open_dataset('/gpfs/home/mep22dku/scratch/SOZONE/UTILS/mesh_mask3pt6_nicedims.nc')
 regions = {
     'mask_lab': {'x': (115, 130), 'y': (110, 130), 'color': 'red'},
@@ -17,17 +16,14 @@ for name, r in regions.items():
 mask_lab_bool = mask_lab.astype(bool)
 mask_nor_bool = mask_nor.astype(bool)
 
-# ── config ────────────────────────────────────────────────────────────────────
 BASE_DIR   = '/gpfs/afm/greenocean/software/runs'
 OUTPUT_DIR = '/gpfs/data/greenocean/users/mep22dku/clims'
 YEARS      = range(1920, 2025)
 VAR        = 'mldr10_1'
 
-# ── read model list ───────────────────────────────────────────────────────────
 with open('models.txt', 'r') as f:
     models = [line.strip() for line in f if line.strip()]
 
-# ── loop ──────────────────────────────────────────────────────────────────────
 for model in models:
     print(f"Processing {model}...")
     records = []
@@ -63,7 +59,6 @@ for model in models:
     if records:
         df = pd.DataFrame(records).set_index('time')
 
-        # ── build xarray Dataset and save as NetCDF ───────────────────────────
         out_ds = xr.Dataset(
             {
                 'mld_lab_mean': ('time', df['mld_lab_mean'].values),
