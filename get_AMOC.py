@@ -47,7 +47,7 @@ def compute_amoc_timeseries(model, yrst, yrend, baseDir, clims_dir):
     file_list = []
     
     for yr in yrs:
-        pattern = f'{baseDir}{model}_1m_{yr}0101*MOC.nc'
+        pattern = f'{baseDir}{model}*{yr}0101*MOC.nc'
         matching_files = glob.glob(pattern)
         if matching_files:
             file_list.append(matching_files[0])
