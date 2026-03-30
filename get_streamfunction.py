@@ -5,8 +5,8 @@ import xarray as xr
 # ── Config ────────────────────────────────────────────────────────────────────
 models_file = 'models.txt'
 moc_base    = '/gpfs/data/greenocean/software/resources/CDFTOOLS/MOCresults'
-year_start  = 2010
-year_end    = 2019
+year_start  = 1940
+year_end    = 1949
 
 # ── Load models ───────────────────────────────────────────────────────────────
 with open(models_file) as f:

@@ -22,8 +22,9 @@ MASK_ATL   = Path('/gpfs/home/mep22dku/scratch/AMOC-PLANKTOM/AMOC-LoP-202510/dat
 MESH_MASK  = Path('/gpfs/home/mep22dku/scratch/SOZONE/UTILS/mesh_mask3pt6_nicedims.nc')
 
 # ===== VARIABLES =====
-PLOT_VARS = ['PPT', 'PPTDOC', 'CorgLoss', 'CO3prod', 'CO3diss']
-SUFFIXES  = ['_int', '_top200m', '_top400m']
+PLOT_VARS = ['PPT', 'PPTDOC', 'CorgLoss', 'CO3prod', 'CO3diss',\
+        'PPT_DIA', 'PPT_MIX', 'PPT_COC', 'PPT_PHA', 'PPT_FIX']
+SUFFIXES  = ['_top100m', '_top200m']
 
 # ===== MASKS =====
 print("Loading masks...")

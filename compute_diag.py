@@ -34,6 +34,7 @@ diad_vars = [
 # Level 18 inclusive => bottom of cell ~ 400 m (check: gdept_1d[18] + e3t_1d[18]/2)
 LEVELS = {
     'int':     None,   # full depth
+    'top100m': 9,     # 0-indexed, inclusive
     'top200m': 15,     # 0-indexed, inclusive
     'top400m': 18,     # 0-indexed, inclusive
 }

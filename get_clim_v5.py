@@ -9,7 +9,7 @@ from pathlib import Path
 yrst = 2010
 yrend = 2019
 # Paths
-runs_dir = '/gpfs/data/greenocean/software/runs/'
+runs_dir = '/gpfs/data/greenocean/software/runs/NEMO5/'
 clims_dir = '/gpfs/data/greenocean/users/mep22dku/clims/'
 models_file = 'models.txt'  # Path to text file containing model names
 
