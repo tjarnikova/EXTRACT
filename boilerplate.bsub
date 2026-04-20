@@ -3,7 +3,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH -p compute
 #SBATCH -t 96:00:00
-#SBATCH --job-name=makeLN
+#SBATCH --job-name=extract
 #SBATCH -o p-%J.out
 #SBATCH -e p-%J.out
 #SBATCH --mem 32G 
@@ -16,12 +16,19 @@ source activate swamp2
 #run me from the login node otehrwise i get confused
 #python dateReformatUKESM.py
 #python get_clim.py
-#python get_clim.py
+#python get_clim_v5.py
 #python get_streamfunction.py
-#python get_AMOC.py
-#python get_AMOC_deep.py
-python mlds.py
+#python get_streamfunction2010.py
+##python get_AMOC.py
+python get_AMOC_deep.py
+#python extract_ice_sos.py
+#python mlds.py
+#python compute_diag.py
+#python get_surf_DIC.py
+#python get_DIC_prov.py
+#python prov_diag.py
 #python depth_integrate.py
 #bash regrid_clim.sh
 #python compute_province_means.py
 #python extract-LoP.py
+

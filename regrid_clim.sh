@@ -41,7 +41,7 @@ for run in "${runs[@]}"; do
     fi
     
     # Find all climatology files (matching pattern ORCA2_1m_clim_*_*.nc but not already regridded)
-    for INFILE in ${DIR}/ORCA2_1m_clim_*_*.nc; do
+    for INFILE in ${DIR}/ORCA2_*_clim_*_*.nc; do
         # Skip if no files found
         [ -e "$INFILE" ] || continue
         
